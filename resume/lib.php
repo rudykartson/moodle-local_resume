@@ -54,8 +54,9 @@ function local_resume_before_footer() {
 // Inject JS for section resume buttons
 function local_resume_extend_navigation_course($navigation, $course, $context) {
     global $PAGE;
-
-    if ($PAGE->pagelayout === 'course') {
+    $enabled = get_config('local_resume', 'enablesection');
+    if ($enabled && $PAGE->pagelayout === 'course') {
+    // if ($PAGE->pagelayout === 'course') {
         // $PAGE->requires->js('/local/resume/sectionbuttons.js');
         $PAGE->requires->js_call_amd('local_resume/sectionbuttons', 'init');
     }
